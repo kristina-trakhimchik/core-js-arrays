@@ -278,8 +278,11 @@ function distinct(arr) {
  *    createNDimensionalArray(1, 1) => [0]
  */
 function createNDimensionalArray(n, size) {
-const arr = new Array(new Array(n).fill().map(() => new Array(size).fill(0)));
-  return Array.from(arr);
+  if (n < 2) {
+    return new Array(size).fill(0);
+  }
+
+  return new Array(size).fill().map(() => createNDimensionalArray(n - 1, size));
 }
 
 /**
@@ -293,8 +296,11 @@ const arr = new Array(new Array(n).fill().map(() => new Array(size).fill(0)));
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  if (!Array.isArray(nestedArray)) {
+    return nestedArray;
+  }
+  return nestedArray.flatMap((x) => flattenArray(x));
 }
 
 /**

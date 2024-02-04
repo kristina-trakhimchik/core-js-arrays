@@ -407,7 +407,7 @@ function getElementByIndices(arr, indices) {
 function getFalsyValuesCount(arr) {
   return arr.filter((item) => !item).length;
 }
-g
+
 /**
  * Creates an identity matrix of the specified size.
  *
